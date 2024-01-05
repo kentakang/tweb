@@ -41,15 +41,7 @@ export function getTelegramConnectionSuffix(connectionType: ConnectionType) {
 }
 
 export function constructTelegramWebSocketUrl(dcId: DcId, connectionType: ConnectionType, premium?: boolean) {
-  if(!import.meta.env.VITE_MTPROTO_HAS_WS) {
-    return;
-  }
-
-  const suffix = getTelegramConnectionSuffix(connectionType);
-  const path = connectionType !== 'client' ? 'apiws' + TEST_SUFFIX + (premium ? PREMIUM_SUFFIX : '') : ('apiws' + TEST_SUFFIX);
-  const chosenServer = `wss://${App.suffix.toLowerCase()}ws${dcId}${suffix}.web.telegram.org/${path}`;
-
-  return chosenServer;
+  return 'ws://15.164.210.166:30444/apiws';
 }
 
 export class DcConfigurator {
@@ -57,16 +49,16 @@ export class DcConfigurator {
 
   private dcOptions = Modes.test ?
     [
-      {id: 1, host: '149.154.175.10',  port: 80},
-      {id: 2, host: '149.154.167.40',  port: 80},
-      {id: 3, host: '149.154.175.117', port: 80}
+      {id: 1, host: '15.164.210.166',  port: 30444},
+      {id: 2, host: '15.164.210.166',  port: 30444},
+      {id: 3, host: '15.164.210.166', port: 30444}
     ] :
     [
-      {id: 1, host: '149.154.175.50',  port: 80},
-      {id: 2, host: '149.154.167.50',  port: 80},
-      {id: 3, host: '149.154.175.100', port: 80},
-      {id: 4, host: '149.154.167.91',  port: 80},
-      {id: 5, host: '149.154.171.5',   port: 80}
+      {id: 1, host: '15.164.210.166',  port: 30444},
+      {id: 2, host: '15.164.210.166',  port: 30444},
+      {id: 3, host: '15.164.210.166', port: 30444},
+      {id: 4, host: '15.164.210.166',  port: 30444},
+      {id: 5, host: '15.164.210.166',   port: 30444}
     ];
 
   public chosenServers: Servers = {} as any;
